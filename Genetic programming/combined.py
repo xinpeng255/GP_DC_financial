@@ -1,4 +1,3 @@
-#!/usr/bin/python36
 import sys
 import FileWriter
 from EA import Problem, EA
@@ -6,8 +5,7 @@ from GP import GP, Util
 import numpy as np
 import pandas as pd
 from random import seed
-from statistics import mean, stdev 
-#threshold=0.001    
+from statistics import mean, stdev  
 
 name=sys.argv[3]
 seed(111)
@@ -28,8 +26,6 @@ ERC_UB = 1  # Upper bound for ERC numbers
 TYPE = "Predicate"
 current_run = 0  # Tracks the current GP run
 parameter_strategy=np.array(pd.read_csv('./output/parameter/solution2_parameter.csv',header=None))
-#parameter_min_no_of_trades=np.array(pd.read_csv('./output/parameter_DC.csv',header=None))
-#parameter_strategy2=np.array(pd.read_csv('./output/parameter_combined_n_r_total.csv',header=None))
 for l in range(len(parameter_strategy[:,1])):
     if parameter_strategy[l,1]==name or parameter_strategy[l,1]==name:               
         THETA_of_price=float(parameter_strategy[l,3])
@@ -38,27 +34,13 @@ for l in range(len(parameter_strategy[:,1])):
         break
 training_data = np.array(pd.read_csv(sys.argv[1]+str(threshold)+'.csv'))[:,1:]
 test_data = np.array(pd.read_csv(sys.argv[2]+str(threshold)+'.csv'))[:,1:]
-#for b in range(len(parameter_strategy2[:,1])):
-#    if parameter_strategy[l,1]==name or parameter_strategy[l,1]==name:
-#         THETA_of_price=float(parameter_strategy[l,8])
-        #THETA_of_price=j
-#        n = float(parameter_strategy[l,7])
-        #threshold=float(parameter_strategy[l, 8])
-#        break
-#for h in range(len(parameter_min_no_of_trades[:,1])):
-#    if parameter_min_no_of_trades[h,1]==name :
-#        MIN_NO_OF_TRADES = float(parameter_min_no_of_trades[h,7])
+
 if name[-1]=='0':
     MIN_NO_OF_TRADES=160
 else:
     MIN_NO_OF_TRADES=80
-#if name[-1]=='0':
-#    MIN_NO_OF_TRADES=160
-#else:
-#    MIN_NO_OF_TRADES=80
 F_SET = ["AND", "OR", "GT", "LT"]  # Function Set
-# Number of variables  in the terminal set depends on number of features in the excel input file
-# ERC: Ephemeral Random Constant; it should always be in the last place of the array
+
 T_SET = ["Var0", "Var1", "Var2", "Var3", "Var4", "Var5", "Var6", "Var7",
          "Var8", "Var9", "Var10", "Var11", "Var12", "Var13", "Var14", "Var15",
          "Var16", "Var17", "Var18", "Var19", "Var20", "Var21", "Var22", "Var23",
