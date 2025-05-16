@@ -136,13 +136,9 @@ class Trading(GP):
             individual.sharpe_ratio=0
         individual.sharpe_ratio = ((individual.rate_of_return-riskfree) / individual.risk \
             if individual.risk != 0 else individual.rate_of_return) # Sharpe ratio calculation
-        #if individual.sharpe_ratio<4:
-        #    individual.sharpe_ratio=individual.sharpe_ratio
-        #else:
-        #    individual.sharpe_ratio=0
-        individual.fitness = 0  # Fitness function value
-        #individual.fitness=individual.risk
-        #individual.fitness = individual.rate_of_return
+
+        individual.fitness = individual.sharpe_ratio # Fitness function value
+
 
 
 # Runs the EA algorithm over a number of independent runs and prints and saves results.
